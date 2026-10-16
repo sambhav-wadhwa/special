@@ -108,22 +108,19 @@
     }
   });
 
-  // Optional soft sound made with Web Audio; nothing plays until she taps.
-  let audioCtx = null, tuneOn = false, tuneTimer = null, noteIndex = 0;
-  const notes = [523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 880, 698.46];
-  function playNote() {
-    if (!tuneOn) return;
-    try {
-      audioCtx ||= new (window.AudioContext || window.webkitAudioContext)();
-      const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
-      osc.type = 'sine'; osc.frequency.value = notes[noteIndex++ % notes.length];
-      gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.045, audioCtx.currentTime + .04);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + .34);
-      osc.connect(gain); gain.connect(audioCtx.destination);
-      osc.start(); osc.stop(audioCtx.currentTime + .36);
-    } catch (_) { /* Sound is optional; the site still works without it. */ }
-  }
+  // The "little tune" button plays your own MP3 instead of the synthesized melody.
+  // Add your file as assets/our-song.mp3. Playback starts only after a user tap.
+  let tuneOn = false;
+  const loveSong = new Audio('assets/our-song.mp3');
+  loveSong.loop = true;
+  loveSong.preload = 'none';
+  loveSong.volume = 0.75;
+  loveSong.addEventListener('error', () => {
+    tuneOn = false;
+    $('musicToggle').setAttribute('aria-pressed', 'false');
+    $('musicToggle').innerHTML = '♫ <span>little tune</span>';
+    toast('Add your MP3 as assets/our-song.mp3 first 💗');
+  });
   $('musicToggle').addEventListener('click', async () => {
     tuneOn = !tuneOn;
     $('musicToggle').setAttribute('aria-pressed', String(tuneOn));
