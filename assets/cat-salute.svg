@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eab5ca"/><stop offset="1" stop-color="#9c9de0"/></linearGradient>
+ <linearGradient id="fur" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff9f2"/><stop offset="1" stop-color="#e9c8bd"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#79455f" flood-opacity=".22"/></filter>
+</defs>
+<rect width="600" height="700" rx="32" fill="url(#bg)"/>
+<circle cx="90" cy="105" r="42" fill="#fff" opacity=".25"/><circle cx="500" cy="140" r="60" fill="#fff" opacity=".18"/>
+<path d="M0 540 Q150 470 300 555 T600 520 V700 H0Z" fill="#fff" opacity=".28"/>
+<path d="M60 180 l15 -24 15 24 -15 24Z" fill="#fff4c5"/><path d="M500 280 l10 -18 10 18 -10 18Z" fill="#fff4c5"/>
+<g filter="url(#shadow)">
+ <path d="M175 290 L155 150 Q150 120 180 145 L245 205 Q300 180 355 205 L420 145 Q450 120 445 155 L425 292" fill="url(#fur)" stroke="#b98985" stroke-width="8" stroke-linejoin="round"/>
+ <ellipse cx="300" cy="390" rx="150" ry="165" fill="url(#fur)" stroke="#b98985" stroke-width="8"/>
+ <ellipse cx="242" cy="370" rx="27" ry="35" fill="#4b3741"/><ellipse cx="358" cy="370" rx="27" ry="35" fill="#4b3741"/>
+ <circle cx="250" cy="358" r="9" fill="#fff"/><circle cx="366" cy="358" r="9" fill="#fff"/>
+ <path d="M280 415 Q300 435 320 415 Q300 445 280 415Z" fill="#d97b95"/>
+ <path d="M300 437 Q275 466 250 442 M300 437 Q325 466 350 442" fill="none" stroke="#7d5661" stroke-width="7" stroke-linecap="round"/>
+ <ellipse cx="220" cy="415" rx="28" ry="15" fill="#f5a5b8" opacity=".65"/><ellipse cx="380" cy="415" rx="28" ry="15" fill="#f5a5b8" opacity=".65"/>
+ <ellipse cx="300" cy="545" rx="105" ry="68" fill="#fff5ed" stroke="#b98985" stroke-width="6"/>
+ <path d="M350 310 Q400 230 442 260 Q465 282 438 306 L380 350" fill="#fff5ed" stroke="#b98985" stroke-width="17" stroke-linecap="round"/><path d="M380 282 Q410 246 445 265" fill="none" stroke="#d98ca5" stroke-width="12" stroke-linecap="round"/><path d="M385 265 L420 250" stroke="#fff" stroke-width="10" stroke-linecap="round"/><path d="M170 290 Q250 245 345 275 L365 300 L170 315Z" fill="#7c658f"/><path d="M180 290 Q250 245 345 275" fill="none" stroke="#fff0f7" stroke-width="8"/>
+</g>
+<text x="300" y="640" text-anchor="middle" font-family="Verdana" font-size="26" font-weight="700" fill="#fff">SALUTE TO MY GIRL 🫡</text>
+</svg>
