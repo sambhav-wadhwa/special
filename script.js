@@ -108,31 +108,44 @@
     }
   });
 
-  // The "little tune" button plays your own MP3 instead of the synthesized melody.
-  // Add your file as assets/our-song.mp3. Playback starts only after a user tap.
-  let tuneOn = false;
-  const loveSong = new Audio('assets/our-song.mp3');
+  
+  // Play your own MP3 after the user taps the button.
+  const loveSong = new Audio('./assets/our-song.mp3');
   loveSong.loop = true;
-  loveSong.preload = 'none';
+  loveSong.preload = 'auto';
   loveSong.volume = 0.75;
-  loveSong.addEventListener('error', () => {
-    tuneOn = false;
-    $('musicToggle').setAttribute('aria-pressed', 'false');
-    $('musicToggle').innerHTML = '♫ <span>little tune</span>';
-    toast('Add your MP3 as assets/our-song.mp3 first 💗');
-  });
+
   $('musicToggle').addEventListener('click', async () => {
-    tuneOn = !tuneOn;
-    $('musicToggle').setAttribute('aria-pressed', String(tuneOn));
-    $('musicToggle').innerHTML = tuneOn ? '♫ <span>tune on</span>' : '♫ <span>little tune</span>';
-    if (tuneOn) {
-      try { audioCtx ||= new (window.AudioContext || window.webkitAudioContext)(); await audioCtx.resume(); } catch (_) {}
-      playNote(); tuneTimer = setInterval(playNote, 430);
-      toast('A tiny tune, just for you ♫');
+    const button = $('musicToggle');
+
+    if (loveSong.paused) {
+      try {
+        await loveSong.play();
+
+        button.setAttribute('aria-pressed', 'true');
+        button.innerHTML = '♫ <span>tune on</span>';
+        toast('Our song is playing ♡');
+      } catch (error) {
+        console.error('MP3 playback failed:', error);
+
+        button.setAttribute('aria-pressed', 'false');
+        button.innerHTML = '♫ <span>little tune</span>';
+        toast('Could not play the song. Please try again ♡');
+      }
     } else {
-      clearInterval(tuneTimer); toast('Tune paused ♡');
+      loveSong.pause();
+
+      button.setAttribute('aria-pressed', 'false');
+      button.innerHTML = '♫ <span>little tune</span>';
+      toast('Song paused ♡');
     }
   });
+
+  // Show an error if the MP3 cannot be loaded.
+  loveSong.addEventListener('error', () => {
+    console.error('Could not load ./assets/our-song.mp3');
+  });
+
   let toastTimer;
   function toast(message) {
     const el = $('toast'); el.textContent = message; el.classList.add('show');
